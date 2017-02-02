@@ -397,22 +397,19 @@ local function takeDamage( ent, dmgInfo )
 
 	if ent:InSafeZone() then 
 		dmgInfo:SetDamage(0)
-		return dmgInfo
 	end 
 
 	local attacker = dmgInfo:GetAttacker()
 	if IsValid(attacker) and attacker:InSafeZone() then
 		dmgInfo:SetDamage(0)
-		return dmgInfo 
 	end
 
 	local inflictor = dmgInfo:GetInflictor()
 	if IsValid(inflictor) and inflictor:InSafeZone() then
 		dmgInfo:SetDamage(0)
-		return dmgInfo 
 	end
 
-	return dmgInfo
+	return -- no need to return anything except if 'true' if you are actually blocking the damage.
 end 
 hook.Add( "EntityTakeDamage", "Safezones_TakeDamge", takeDamage )
 
